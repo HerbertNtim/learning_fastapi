@@ -37,7 +37,7 @@ class BlogType(str, Enum):
 def get_blog_type(type: BlogType):
   return {'message': f'This is a Blog type of {type}'}
 
-@app.get("/blog/{id}",  status_code=status.HTTP_200_OK, tags=['blog'])
+@app.get("/blog/{id}",  status_code=status.HTTP_200_OK, tags=['blog'], response_description='Found blog based on id')
 def get_blog(id: int, response:Response):
   if id > 5:
     response.status_code = status.HTTP_404_NOT_FOUND
