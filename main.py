@@ -12,13 +12,21 @@ def index() :
 # def get_all_blog():
 #   return "Getting all blogs"
 
-@app.get('/blog/all', tags=['blog'])
+@app.get('/blog/all', tags=['blog'], summary='This API gets all blogs', description='Getting all blogs from the data base')
 def get_blogs(page=1, page_size=10):
   return {"message": f'All {page_size} blogs can be found on {page}'}
 
-@app.get('/blog/comments/{comment_id}', tags=['blog', 'comment'])
+@app.get('/blog/{id}/comments/{comment_id}', tags=['blog', 'comment'])
 def get_comments(comment_id: int, valid: bool = True, username: Optional[str] = None):
-  return {"message": f"Blog ID {comment_id}, valid {valid}, username {username}"}
+  """
+  Getting comments based on 
+  
+  - **blog id** Mandatory parameter for getting the id
+  - **comment id** Mandatory parameter for getting the comment 
+  - **valid** Optional parameter for getting the comment 
+  - **username** Optional parameter for getting the comment 
+  """
+  return {"message": f"Blog ID {id}, Comment ID {comment_id}, valid {valid}, username {username}"}
 
 class BlogType(str, Enum):
   short = 'short'
